@@ -1,7 +1,7 @@
 # Run 
-git clone git@github.com:its-your-nuna/test-task.git
-npm install
-npm start
+    1.git clone git@github.com:its-your-nuna/test-task.git
+    2.npm install
+    3.npm start
 
 # TEST TASK
 Link of deployed project [link](https://test-task-ebon.vercel.app/).
