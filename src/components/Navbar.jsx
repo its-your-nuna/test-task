@@ -24,7 +24,7 @@ function NavScrollExample({setEmail}) {
           </Nav>
           <Form className="d-flex">
            
-            <Button onClick={setEmail('')} variant="outline-success">Exit</Button>
+            <Button  variant="outline-success">Exit</Button>
           </Form>
         </Navbar.Collapse>
       </Container>

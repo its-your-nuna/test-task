@@ -3,59 +3,60 @@ import React, { useRef, useState } from "react"
 import { Navigate } from 'react-router'; 
 import axios from "axios";
 import Alert1 from "./Alert1";
+import { useDispatch, useSelector } from "react-redux";
 
-export const Auth = ({setEmail})=> {
+export const Auth = ({setEmail,user})=> {
+  const dispatch = useDispatch()
   const [showAlert,setShowAlert]=useState(false)
   const[variant,setVariant]=useState('')
   let [authMode, setAuthMode] = useState("signin")
   const [isSuccess,setIsSuccess]=useState(false)
+  const[firstName,setFirstName]=useState('')
+  const [lastName,setLastName]=useState('')
   const passwordRef = useRef(null)
-  const fullNameRef = useRef(null)
   const emailRef = useRef(null)
   
+
   const changeAuthMode = () => {
     setAuthMode(authMode === "signin" ? "signup" : "signin")
   }
   
   const signUp = ()=>{
-    console.log('login')
-    axios.post('https://reqres.in/api/login',{
-    email: emailRef.current.value,
-    password: passwordRef.current.value
-  })
-  .then(function (response) {
-    setEmail(emailRef.current.value)
-    setShowAlert(true)
-    setVariant('success')
-    console.log(response.data);
-    setTimeout(()=>
-      {
-        setIsSuccess(true)
-        setShowAlert(false)
-      },2000
-    )
-  })
-  .catch(function (error) {
-    setShowAlert(true)
-    setVariant('danger')
-    console.log(error);
-  })
+    user.map((user)=>{
+      console.log('email',user.email)
+      if(user.email===emailRef.current.value){
+        setEmail(emailRef.current.value)
+        setShowAlert(true)
+        setVariant('success')
+        setTimeout(()=>
+        {
+          setShowAlert(false)
+        },2000
+      )
+      setIsSuccess(true)
+      console.log('login')
+      }else{
+        setShowAlert(true)
+         setVariant('danger')
+         console.log(user.email,emailRef.current.value,'not login')
+      }
+    })
   }
   const register=()=>{
-
-    console.log('register')
-    axios.post('https://reqres.in/api/register',{
-    email: emailRef.current.value,
-    password: passwordRef.current.value
-  })
-  .then(function (response) {
-    if(fullNameRef&&emailRef&&passwordRef){
+    if(firstName&&lastName&&emailRef.current.value&&passwordRef.current.value){
+    dispatch({
+      type:"REGISTER",
+      id:passwordRef.current.value,
+      avatar:'https://icon-library.com/images/default-user-icon/default-user-icon-8.jpg',
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+      first_name: firstName,
+      last_name: lastName
+    })
       setShowAlert(true)
-
       setVariant('success')
       setTimeout(()=>
         {
-          console.log('timer')
           setAuthMode('signin')
           setShowAlert(false)
         },2000
@@ -65,17 +66,42 @@ export const Auth = ({setEmail})=> {
       setShowAlert(true)
       setVariant('danger')
     }
-   
-  })
-  .catch(function (error) {
-    setShowAlert(true)
-    setVariant('danger')
-    console.log(error);
+      
+
     
- }
- ) 
+    
+  //   axios.post('https://reqres.in/api/register',{
+  //   email: emailRef.current.value,
+  //   password: passwordRef.current.value
+  // })
+  // .then(function (response) {
+  //   if(emailRef&&passwordRef){
+  //     setShowAlert(true)
+
+  //     setVariant('success')
+  //     setTimeout(()=>
+  //       {
+  //         console.log('timer')
+  //         setAuthMode('signin')
+  //         setShowAlert(false)
+  //       },2000
+  //     )
+  //   }
+  //   else{
+  //     setShowAlert(true)
+  //     setVariant('danger')
+  //   }
+   
+//   })
+//   .catch(function (error) {
+//     setShowAlert(true)
+//     setVariant('danger')
+//     console.log(error);
+    
+//  }
+//  ) 
   }
-  
+  console.log('u',user)
   if(isSuccess===true){
     return (
       <Navigate to="/home"/>
@@ -146,12 +172,21 @@ export const Auth = ({setEmail})=> {
             </span>
           </div>
           <div className="form-group mt-3">
-            <label>Full Name</label>
+            <label>First Name</label>
             <input
-            ref={fullNameRef}
+              onChange={e=>setFirstName(e.target.value)}
               type="text"
               className="form-control mt-1"
-              placeholder="e.g Jane Doe"
+              placeholder="e.g Jane"
+            />
+          </div>
+          <div className="form-group mt-3">
+            <label>Last Name</label>
+            <input
+              onChange={e=>setLastName(e.target.value)}
+              type="text"
+              className="form-control mt-1"
+              placeholder="e.g Doe"
             />
           </div>
           <div className="form-group mt-3">
