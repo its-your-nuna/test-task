@@ -1,7 +1,8 @@
 # Run 
     1.git clone git@github.com:its-your-nuna/test-task.git
     2.npm install
-    3.npm start
+    3.npm i react-google-login --force 
+    4.npm start
 
 # TEST TASK
 Link of deployed project [link](https://test-task-ebon.vercel.app/).
@@ -13,7 +14,7 @@ Link of deployed project [link](https://test-task-ebon.vercel.app/).
     4.404 
 
 ### Autharized Page
-Google button doesnt'work in vercel, but you can check in 
+Google button doesnt'work in vercel, but you can see it locally
 Navigation bar links disabled until user logs in
 
 ### User Page
