@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# TEST TASK
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Link of deployed project [link](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 

@@ -4,10 +4,11 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Nav from 'react-bootstrap/Nav';
 import { Link } from 'react-router-dom'
 
-export const Home = ({setAutharizedUser,setCurrentUser,email,user}) => {
-  console.log(user)
+export const Home = ({setCurrentUser,email,user}) => {
+  console.log(email)
   return (
     <>
+    {/* // get autharized user  */}
     {user.length &&
           user.map((user) => {
             if(user.email===email){
@@ -29,7 +30,7 @@ export const Home = ({setAutharizedUser,setCurrentUser,email,user}) => {
               console.log('all',user.email,'current',email)
             }
           })}
-    
+    {/* get list of users */}
     <h3>Hello ReqRes users!</h3>
       <div className="flex">
         {user.length &&

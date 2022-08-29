@@ -5,9 +5,10 @@ import axios from "axios";
 import Alert1 from "./Alert1";
 import { useDispatch, useSelector } from "react-redux";
 
-export const Auth = ({setEmail,user})=> {
+export const Auth = ({setEmail,user,setIsAutharized})=> {
   const dispatch = useDispatch()
   const [showAlert,setShowAlert]=useState(false)
+  // style of alert
   const[variant,setVariant]=useState('')
   let [authMode, setAuthMode] = useState("signin")
   const [isSuccess,setIsSuccess]=useState(false)
@@ -16,18 +17,25 @@ export const Auth = ({setEmail,user})=> {
   const passwordRef = useRef(null)
   const emailRef = useRef(null)
   
-
+  //function for show the authorization 
   const changeAuthMode = () => {
     setAuthMode(authMode === "signin" ? "signup" : "signin")
   }
   
   const signUp = ()=>{
+
     user.map((user)=>{
       console.log('email',user.email)
+      // if email from registration exist in login input
+      //successfullyy login
       if(user.email===emailRef.current.value){
+        // set current autharized user email
         setEmail(emailRef.current.value)
+        // show alert if successfully login
         setShowAlert(true)
         setVariant('success')
+        setIsAutharized(true)
+        //after 2 second close alert
         setTimeout(()=>
         {
           setShowAlert(false)
@@ -36,6 +44,7 @@ export const Auth = ({setEmail,user})=> {
       setIsSuccess(true)
       console.log('login')
       }else{
+        //if do not successfully register show alert with danger variant
         setShowAlert(true)
          setVariant('danger')
          console.log(user.email,emailRef.current.value,'not login')
@@ -43,6 +52,7 @@ export const Auth = ({setEmail,user})=> {
     })
   }
   const register=()=>{
+    // if inputs exist add to user's list
     if(firstName&&lastName&&emailRef.current.value&&passwordRef.current.value){
     dispatch({
       type:"REGISTER",
@@ -66,47 +76,15 @@ export const Auth = ({setEmail,user})=> {
       setShowAlert(true)
       setVariant('danger')
     }
-      
-
-    
-    
-  //   axios.post('https://reqres.in/api/register',{
-  //   email: emailRef.current.value,
-  //   password: passwordRef.current.value
-  // })
-  // .then(function (response) {
-  //   if(emailRef&&passwordRef){
-  //     setShowAlert(true)
-
-  //     setVariant('success')
-  //     setTimeout(()=>
-  //       {
-  //         console.log('timer')
-  //         setAuthMode('signin')
-  //         setShowAlert(false)
-  //       },2000
-  //     )
-  //   }
-  //   else{
-  //     setShowAlert(true)
-  //     setVariant('danger')
-  //   }
-   
-//   })
-//   .catch(function (error) {
-//     setShowAlert(true)
-//     setVariant('danger')
-//     console.log(error);
-    
-//  }
-//  ) 
+ 
   }
-  console.log('u',user)
+  //if successfully login open home page
   if(isSuccess===true){
     return (
       <Navigate to="/home"/>
     )
   }
+  //sigin mode
   if (authMode === "signin") {
     return (
       <>
@@ -156,7 +134,7 @@ export const Auth = ({setEmail,user})=> {
       </>
     )
   }
-
+  // register mode
   return (
     <>
     <Alert1 variant={variant}

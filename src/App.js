@@ -2,33 +2,36 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.scss"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import {Auth} from "./components/Auth"
-import { useEffect,useState } from "react"
-import Alert1 from "./components/Alert1"
+import { Auth } from "./components/Auth"
+import { useEffect, useState } from "react"
 import { Home } from "./components/Home"
 import NavScrollExample from "./components/Navbar"
 import { User } from "./components/User"
 import { NotFoundPage } from "./components/NotFoundPage"
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 function App() {
-  const [email,setEmail] = useState(null)
-  const [currentUser,setCurrentUser]=useState('')
-  const [autharizedUser,setAutharizedUser] = useState('')
-  const user = useSelector(state=>state.users)
-  console.log(user)
+  // email of autharized user
+  const [email, setEmail] = useState(null)
+  const [currentUser, setCurrentUser] = useState('')
+  // get users from reducer
+  const user = useSelector(state => state.users)
+  const [isAutharized, setIsAutharized] = useState(false)
+
   return (
     <BrowserRouter>
-      <NavScrollExample setEmail={setEmail}/>
+      <NavScrollExample isAutharized={isAutharized}  />
       <Routes>
-      <Route path="/" element={null}/>
-      <Route path="/home" element={<Home user={user} email={email} setCurrentUser={setCurrentUser} 
-      setAutharizedUser={setAutharizedUser}/>}/>
-      <Route path="/auth" element={<Auth user={user}  setEmail={setEmail} email={email}/>} />
-      <Route path="/user" element={<User currentUser={currentUser} autharizedUser={autharizedUser}/>} />
-      <Route path="/404"  element={<NotFoundPage/>} />
+        <Route path="/home" element={
+          <Home user={user} email={email} setCurrentUser={setCurrentUser}
+          />} />
+        <Route path="/" element={
+          <Auth user={user} setIsAutharized={setIsAutharized} setEmail={setEmail} email={email} />} />
+        <Route path="/user" element={
+          <User currentUser={currentUser} />} />
+        <Route path="/404" element={<NotFoundPage />} />
       </Routes>
-      
+
     </BrowserRouter>
   )
 }
