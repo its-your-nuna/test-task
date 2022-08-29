@@ -9,7 +9,7 @@ import GoogleLogin from "react-google-login";
 export const Auth = ({setEmail,user,setIsAutharized})=> {
   const dispatch = useDispatch()
   const [showAlert,setShowAlert]=useState(false)
-  // if googleMode true remove password input from login
+  // if googleMode is true remove password input from login
   const [googleMode,setGoogleMode]=useState(false)
   //alert style variant
   const[variant,setVariant]=useState('')
@@ -47,11 +47,11 @@ export const Auth = ({setEmail,user,setIsAutharized})=> {
       },2000
     )
   };
+  //google button login
   const loginGoogle = (response) => {
     user.map((user)=>{
       console.log('email',user.email)
-      // if email from registration exist in login input
-      //successfullyy login
+      //if email from registration exists in login
       if(user.email===response.gv.Tv){
         // set current autharized user email
         setEmail(response.gv.Tv)
@@ -68,7 +68,7 @@ export const Auth = ({setEmail,user,setIsAutharized})=> {
       setIsSuccess(true)
       console.log('login')
       }else{
-        //if do not successfully register show alert with danger variant
+        //if registration failed, show warning with dangerous option
         setShowAlert(true)
          setVariant('danger')
          console.log(user.email,emailRef.current.value,'not login')

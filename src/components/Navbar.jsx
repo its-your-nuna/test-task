@@ -39,7 +39,7 @@ function NavScrollExample({isAutharized,setEmail}) {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-    {/*show alert that user need to register */}
+    {/*show a warning that the user needs to register*/}
     {show &&
       <Alert variant={'danger'}  dismissible>  
           <Alert.Heading>Oh snap! Pls register at first</Alert.Heading>

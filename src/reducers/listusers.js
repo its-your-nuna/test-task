@@ -1,3 +1,4 @@
+//dats from reqres api page
 const data =[{
 id:1,
 email:"george.bluth@reqres.in",

@@ -1,4 +1,5 @@
 import data from './listusers.js'
+// add new user
 const users = (state=data, action) => {
     switch (action.type) {
       case 'REGISTER':
@@ -13,12 +14,7 @@ const users = (state=data, action) => {
           first_name: action.first_name,
           last_name: action.last_name
           }]
-      case 'TOGGLE_TODO':
-        return state.map(todo =>
-          (todo.id === action.id)
-            ? {...todo, completed: !todo.completed}
-            : todo
-        )
+      
       default:
         return state
     }

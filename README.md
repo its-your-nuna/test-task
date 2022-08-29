@@ -13,8 +13,8 @@ Link of deployed project [link](https://test-task-ebon.vercel.app/).
     4.404 
 
 ### Autharized Page
-Navbar links disabled until user not login
+Navigation bar links disabled until user logs in
 
 ### User Page
-User's data enabled after clicking 'learn more' button in home page
+User data is included after clicking the "learn more" button on the main page
 
