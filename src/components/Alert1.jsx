@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import Alert from 'react-bootstrap/Alert';
-
+//Component for show if login or register works right
 function Alert1({type,variant,setShowAlert,showAlert}) {
 
   if(showAlert){

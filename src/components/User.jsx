@@ -5,6 +5,7 @@ export const User = ({currentUser}) => {
 
   return (
     <>
+    {/* show particular user info */}
     <img id='img' src={currentUser.avatar}/>
     <Table striped bordered hover>
     <tbody>

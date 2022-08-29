@@ -26,6 +26,7 @@ function NavScrollExample({isAutharized,setEmail}) {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
+            {/* if not autharized, links are disabled */}
             <Nav.Link as={Link}  disabled={!isAutharized}   to="/home" href="#action1">Home page</Nav.Link>
             <Nav.Link as={Link}  disabled={!isAutharized}   to="/user" href="#action2">User page</Nav.Link>
             <Nav.Link as={Link}  disabled={!isAutharized}  to="/" href="#action2">Authorization page</Nav.Link>
@@ -38,6 +39,7 @@ function NavScrollExample({isAutharized,setEmail}) {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    {/*show alert that user need to register */}
     {show &&
       <Alert variant={'danger'}  dismissible>  
           <Alert.Heading>Oh snap! Pls register at first</Alert.Heading>

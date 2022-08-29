@@ -5,14 +5,16 @@ import axios from "axios";
 import Alert1 from "./Alert1";
 import { useDispatch, useSelector } from "react-redux";
 import GoogleLogin from "react-google-login";
-
+//Auth Component with 2 returns (signin,signup)
 export const Auth = ({setEmail,user,setIsAutharized})=> {
   const dispatch = useDispatch()
   const [showAlert,setShowAlert]=useState(false)
-  // style of alert
+  // if googleMode true remove password input from login
   const [googleMode,setGoogleMode]=useState(false)
+  //alert style variant
   const[variant,setVariant]=useState('')
   let [authMode, setAuthMode] = useState("signin")
+  //if authorization is success
   const [isSuccess,setIsSuccess]=useState(false)
   const[firstName,setFirstName]=useState('')
   const [lastName,setLastName]=useState('')
@@ -23,6 +25,7 @@ export const Auth = ({setEmail,user,setIsAutharized})=> {
   const changeAuthMode = () => {
     setAuthMode(authMode === "signin" ? "signup" : "signin")
   }
+  //google button register
   const responseGoogle = (response) => {
     dispatch({
       type:"REGISTER",
@@ -76,8 +79,7 @@ export const Auth = ({setEmail,user,setIsAutharized})=> {
 
     user.map((user)=>{
       console.log('email',user.email)
-      // if email from registration exist in login input
-      //successfullyy login
+      // if email from registration exists in login input
       if(user.email===emailRef.current.value){
         // set current autharized user email
         setEmail(emailRef.current.value)
@@ -102,7 +104,7 @@ export const Auth = ({setEmail,user,setIsAutharized})=> {
     })
   }
   const register=()=>{
-    // if inputs exist add to user's list
+    // if inputs exist, add to user's list
 
     if(firstName&&lastName&&emailRef.current.value&&passwordRef.current.value){
     dispatch({
@@ -246,10 +248,10 @@ export const Auth = ({setEmail,user,setIsAutharized})=> {
             />
           </div>
           <GoogleLogin
-    clientId="108490793456-0flm4qh8ek4cb4krt7e06980o4sjvado.apps.googleusercontent.com"
-    buttonText="Register"
-    onSuccess={responseGoogle}
-    onFailure={responseGoogle}
+      clientId="108490793456-0flm4qh8ek4cb4krt7e06980o4sjvado.apps.googleusercontent.com"
+      buttonText="Register"
+      onSuccess={responseGoogle}
+      onFailure={responseGoogle}
     cookiePolicy={"single_host_origin"}
   />
           <div className="d-grid gap-2 mt-3">
