@@ -13,6 +13,7 @@ Link of deployed project [link](https://test-task-ebon.vercel.app/).
     4.404 
 
 ### Autharized Page
+Google button doesnt'work in vercel, but you can check in 
 Navigation bar links disabled until user logs in
 
 ### User Page
