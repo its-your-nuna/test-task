@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+
+import "bootstrap/dist/css/bootstrap.min.css"
+import "./App.scss"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import {Auth} from "./components/Auth"
+import { useRef,useState } from "react"
+import Alert1 from "./components/Alert1"
+import { Home } from "./components/Home"
+import NavScrollExample from "./components/Navbar"
+import { User } from "./components/User"
+
 
 function App() {
+  const [email,setEmail] = useState(null)
+  const [currentUser,setCurrentUser]=useState('')
+  const [autharizedUser,setAutharizedUser] = useState('')
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+    <NavScrollExample setEmail={setEmail}/>
+      <Routes>
+      <Route path="/" element={null}/>
+      <Route path="/home" element={<Home email={email} setCurrentUser={setCurrentUser} 
+      setAutharizedUser={setAutharizedUser}/>}/>
+      <Route path="/auth" element={<Auth setEmail={setEmail}/>} />
+      <Route path="/user" element={<User currentUser={currentUser} autharizedUser={autharizedUser}/>} />
+      </Routes>
+      
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
