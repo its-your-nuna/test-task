@@ -1,0 +1,12 @@
+README
+README.md added with instruction on how to build and run your app
+Applying design patterns
+Deploy and provide Vercel.
+Some knowledge of Node.js
+Design components with storybook
+Cover with Unit tests, snapshot test using Jest or Enzyme or Testing Library
+Use React Router v6
+Design libraries/Frameworks (Material UI, Chakra UI, Bootstrap, Tailwind CSS)
+Authorization with Google, FB, etc.
+
+
