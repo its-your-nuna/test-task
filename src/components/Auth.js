@@ -77,7 +77,7 @@ export const Auth = ({setEmail,user,setIsAutharized})=> {
   };
   const signUp = ()=>{
     //get user from mongodb
-    axios.get('http://localhost:5000/tasks').then((response) => {
+    axios.get('http://localhost:5001/users').then((response) => {
       console.log('axios get',response.data)
     })
 
@@ -129,7 +129,7 @@ export const Auth = ({setEmail,user,setIsAutharized})=> {
         },2000
       )
       // add user to mongodb
-      axios.post('http://localhost:5000/users', {
+      axios.post('http://localhost:5001/users', {
         id:passwordRef.current.value,
         avatar:'https://icon-library.com/images/default-user-icon/default-user-icon-8.jpg',
         email: emailRef.current.value,
