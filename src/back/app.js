@@ -21,55 +21,42 @@ client
     console.log(err);
   });
 
-const db = client.db("21goal");
-const collection = db.collection("21goal");
+const db = client.db("users_db");
+const collection = db.collection("users_db");
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.get("/tasks", async (req, res) => {
+app.get("/users", async (req, res) => {
   const result = await collection.find({}).toArray();
 
   res.send(result);
 });
 
-app.post("/tasks", async (req, res) => {
+app.post("/users", async (req, res) => {
   const { content} = req.body;
   const response = await collection.insertOne({
-    content
+    avatar,
+    email,
+    password,
+    first_name,
+    last_name
   });
 
   const result = {
     id: response.insertedId,
-    content
+    avatar,
+    email,
+    password,
+    first_name,
+    last_name
   };
 
   res.send(result);
 });
 
-app.put("/tasks/:id", async (req, res) => {
-  const { content} = req.body;
-  const { id } = req.params;
 
-  await collection.updateOne(
-    {
-      _id: new ObjectId(id),
-    },
-    {
-      $set: {
-        content
-      },
-    }
-  );
-
-  const result = {
-    _id: id,
-    content
-  };
-
-  res.send(result);
-});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
