@@ -76,6 +76,10 @@ export const Auth = ({setEmail,user,setIsAutharized})=> {
     })
   };
   const signUp = ()=>{
+    //get user from mongodb
+    axios.get('http://localhost:5000/tasks').then((response) => {
+      console.log('axios get',response.data)
+    })
 
     user.map((user)=>{
       console.log('email',user.email)
@@ -124,6 +128,18 @@ export const Auth = ({setEmail,user,setIsAutharized})=> {
           setShowAlert(false)
         },2000
       )
+      // add user to mongodb
+      axios.post('http://localhost:5000/users', {
+        id:passwordRef.current.value,
+        avatar:'https://icon-library.com/images/default-user-icon/default-user-icon-8.jpg',
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
+        first_name: firstName,
+        last_name: lastName
+        })
+        .then((response) => {
+          console.log('axios put',response.data)
+        })
     }
     else{
       setShowAlert(true)

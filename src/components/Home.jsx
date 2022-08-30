@@ -5,7 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import { Link } from 'react-router-dom'
 
 export const Home = ({setCurrentUser,email,user}) => {
-  console.log(email)
+  
   return (
     <>
     {/* // get autharized user  */}
@@ -27,7 +27,7 @@ export const Home = ({setCurrentUser,email,user}) => {
               
             );
             }else{
-              console.log('all',user.email,'current',email)
+              console.log('error in home.jsx ')
             }
           })}
     {/* get list of users */}
